@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Minimal websocket application</title>
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript">
+        var ws;
+        function connect2server() {
+            // Open up a connection to our server
+            ws = new WebSocket("ws://localhost:8099/");
+
+            // What do we do when we get a message?
+            ws.onmessage = function(evt) {
+                $("#placeholder").append('<p>' + evt.data + '</p>')
+            }
+            // Just update our conn_status field with the connection status
+            ws.onopen = function(evt) {
+                $('#conn_status').html('<b>Connected</b>');
+            }
+            ws.onerror = function(evt) {
+                $('#conn_status').html('<b>Error</b>');
+            }
+            ws.onclose = function(evt) {
+                $('#conn_status').html('<b>Closed</b>');
+            }
+        }
+        connect2server();
+        function chat_send() {
+            //alert($("#chat_text").val())
+            ws.send($("#chat_text").val());
+
+        }
+        </script>
+    </head>
+    <body>
+        <h1>WebSocket Example</h1>
+        <div id="conn_status">Not Connected</div>
+        <div id="placeholder" style="width:600px;height:300px;"></div>
+
+        <p onclick="test()">  </p>
+
+        <input id="chat_text" type="text" name="firstname" />
+        <button onclick="chat_clear()"> x </button>
+        <button onclick="chat_send()"> send </button>
+
+    </body>
+</html>
