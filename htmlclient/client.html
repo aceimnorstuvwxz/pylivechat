@@ -10,7 +10,15 @@
 
             // What do we do when we get a message?
             ws.onmessage = function(evt) {
-                $("#placeholder").append('<p>' + evt.data + '</p>')
+
+            	var date = new Date();
+				var st = (date.toLocaleTimeString()) + ":  " + evt.data + '<br\>';
+
+            	var nst = st + $("#placeholder").html();
+            	// alert(nst);
+            	$("#placeholder").html(nst)
+
+                // $("#placeholder").append('<p>' + evt.data + '</p>')
             }
             // Just update our conn_status field with the connection status
             ws.onopen = function(evt) {
@@ -27,20 +35,25 @@
         function chat_send() {
             //alert($("#chat_text").val())
             ws.send($("#chat_text").val());
+            chat_clear();
+        }
 
+        function chat_clear() {
+        	$("#chat_text").val("")
         }
         </script>
     </head>
     <body>
-        <h1>WebSocket Example</h1>
+
+        <input id="chat_text" type="text" name="firstname" style="width:210px;"/>
+        <button onclick="chat_clear()"> x </button>
+        <button onclick="chat_send()"> send </button>
         <div id="conn_status">Not Connected</div>
-        <div id="placeholder" style="width:600px;height:300px;"></div>
+
+        <div id="placeholder" style="overflow-y:auto;width:300px;height:200px;"></div>
 
         <p onclick="test()">  </p>
 
-        <input id="chat_text" type="text" name="firstname" />
-        <button onclick="chat_clear()"> x </button>
-        <button onclick="chat_send()"> send </button>
 
     </body>
 </html>
