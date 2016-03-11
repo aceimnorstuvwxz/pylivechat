@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RTMP Player</title>
+    <script type="text/javascript" src="swfobject.js"></script>
+    <script type="text/javascript">
+        var flashVars = {
+            streamer: 'rtmp://172.16.17.198/myapp',
+            file:'mystream'
+        };
+        var params = {};
+        params.allowfullscreen = "true";
+        var attributes = {};
+        swfobject.embedSWF("RtmpPlayer.swf", "rtmp-publisher", "500", "350", "9.0.0", null, flashVars, params, attributes);
+    </script>
+</head>
+<body>
+    <div id="rtmp-publisher">
+        <p>Flash not installed</p>
+    </div>
+    <br/>
+    <iframe src="http://172.16.17.198:8080/htmlclient/client.html"></iframe>
+</body>
+</html>

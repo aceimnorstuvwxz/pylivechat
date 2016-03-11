@@ -6,7 +6,7 @@
         var ws;
         function connect2server() {
             // Open up a connection to our server
-            ws = new WebSocket("ws://localhost:8099/");
+            ws = new WebSocket("ws://172.16.17.198:8099/");
 
             // What do we do when we get a message?
             ws.onmessage = function(evt) {
@@ -43,14 +43,14 @@
         }
         </script>
     </head>
-    <body>
+    <body style="background-color: transparent">
 
         <input id="chat_text" type="text" name="firstname" style="width:210px;"/>
         <button onclick="chat_clear()"> x </button>
         <button onclick="chat_send()"> send </button>
         <div id="conn_status">Not Connected</div>
 
-        <div id="placeholder" style="overflow-y:auto;width:300px;height:200px;"></div>
+        <div id="placeholder" style="color:gray;overflow-y:auto;width:300px;height:200px;"></div>
 
         <p onclick="test()">  </p>
 
